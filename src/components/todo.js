@@ -10,10 +10,12 @@ import Edit from 'material-ui/svg-icons/editor/mode-edit';
 import IconButton from 'material-ui/IconButton';
 import {red500, green500} from 'material-ui/styles/colors';
 
-const RightButtons = (props) =>{
+class RightButtons extends React.Component {
+  render(){
     const style = {
       position: 'absolute',
-      right: '10px'
+      right: '10px',
+      top: '9px'
     }
     return (
       <div style={style}>
@@ -25,6 +27,7 @@ const RightButtons = (props) =>{
         </IconButton>
       </div>
     )
+  }
 }
 
 class Todo extends React.Component {
@@ -33,7 +36,7 @@ class Todo extends React.Component {
       <Paper>
       <ListItem
         primaryText={this.props.item.header}
-        secondaryText={this.props.item.text}
+        secondaryText={this.props.item.content}
         leftCheckbox={
           <Checkbox defaultChecked={this.props.item.checked}
             onCheck={(e)=>{this.props.item.checked = e.target.checked}}/>

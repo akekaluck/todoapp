@@ -9,6 +9,8 @@ import IconMenu from 'material-ui/IconMenu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/MenuItem';
 
+import AddDialog from './adddialog';
+
 const Filter = (props) => (
   <IconMenu
     {...props}
@@ -29,7 +31,7 @@ class TodoApp extends React.Component {
       bottom: '40px',
       right: '40px'
     }
-    // console.log(this.props);
+
     return (
       <div>
         <AppBar title="Welcome to Todo app."
@@ -37,10 +39,11 @@ class TodoApp extends React.Component {
           iconElementRight={<Filter />}
         />
         <FloatingActionButton secondary={true} style={addButtonStyle}
-          onClick={this.props.Actions.addTodo}>
+          onClick={this.props.Actions.showAddDlg}>
           <ContentAdd />
         </FloatingActionButton>
         <TodoList { ...this.props }/>
+        <AddDialog { ...this.props} />
       </div>
     )
   }
