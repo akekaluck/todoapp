@@ -45,7 +45,7 @@ class AddDialog extends React.Component {
           />
         <br />
         <DatePicker hintText="Date"
-          defaultDate={this.props.currentTodo.date}
+          defaultDate={new Date(this.props.currentTodo.date)}
           onChange={(e, newValue)=>{
             this.props.currentTodo.date = newValue;
           }}
