@@ -12,6 +12,9 @@ import {red500, green500} from 'material-ui/styles/colors';
 
 class RightButtons extends React.Component {
   dateFormat(date){
+    if(!date){
+      date = new Date();
+    }
     date = new Date(date);
     var mm = date.getMonth() + 1;
     var dd = date.getDate();
