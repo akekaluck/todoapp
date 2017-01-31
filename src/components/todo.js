@@ -17,13 +17,28 @@ class RightButtons extends React.Component {
       right: '10px',
       top: '9px'
     }
+    const dateStyle = {
+      position: 'absolute',
+      right: '50px',
+      top: '19px',
+      fontSize: '12px',
+      width: '120px'
+    }
+
     return (
       <div style={style}>
-        <IconButton>
-          <Edit color={green500} onClick={(e)=>{this.props.showAddDlg(e, this.props.item)}}/>
+        <div style={dateStyle}>
+          {this.props.item.date?this.props.item.date.toISOString().slice(0,10):''}
+        </div>
+        <IconButton disabled={this.props.item.checked}
+          onClick={(e)=>{this.props.showAddDlg(e, this.props.item)}}
+        >
+          <Edit color={green500} />
         </IconButton>
-        <IconButton>
-          <Delete color={red500} onClick={(e)=>{this.props.showRemoveDlg(e, this.props.item)}}/>
+        <IconButton disabled={this.props.item.checked}
+          onClick={(e)=>{this.props.showRemoveDlg(e, this.props.item)}}
+        >
+          <Delete color={red500} />
         </IconButton>
       </div>
     )
@@ -31,15 +46,41 @@ class RightButtons extends React.Component {
 }
 
 class Todo extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      todoStyle: {}
+    }
+  }
+
+  checkboxChecked(e){
+    this.props.item.checked = e.target.checked
+    if(this.props.item.checked){
+      this.setState({
+        ...this.state,
+        todoStyle: {
+          backgroundColor: '#908f8f',
+          textDecoration: 'line-through',
+          opacity:'0.3'
+        }
+      })
+    } else {
+      this.setState({
+        ...this.state,
+        todoStyle: {}
+      })
+    }
+  }
+
   render(){
     return (
-      <Paper>
+      <Paper style={this.state.todoStyle}>
       <ListItem
-        primaryText={this.props.item.header}
-        secondaryText={this.props.item.content}
+        primaryText={this.props.item.title}
+        secondaryText={this.props.item.description}
         leftCheckbox={
           <Checkbox defaultChecked={this.props.item.checked}
-            onCheck={(e)=>{this.props.item.checked = e.target.checked}}/>
+            onCheck={this.checkboxChecked.bind(this)}/>
         }
         rightIconButton={
           <RightButtons {...this.props}/>

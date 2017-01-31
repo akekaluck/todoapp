@@ -5,8 +5,8 @@ const InitialState = {
   addDlgOpen: false,
   isEdit: false,
   todos: [
-    {id: 1, header: 'test', content: 'content', checked: false},
-    {id: 2, header: 'test', content: 'content', checked: true}
+    {id: 1, title: 'test', description: 'description', date:new Date(), checked: false},
+    {id: 2, title: 'test', description: 'description', date:new Date(),checked: true}
   ],
   currentTodo: {},
   errorMsg: {}
@@ -20,8 +20,8 @@ const AddTodo = (state, action) => {
     let newTodo = action.payload.newTodo;
     result.todos = result.todos.map((item)=>{
       if(item.id === newTodo.id){
-        item.header = newTodo.header;
-        item.content = newTodo.content;
+        item.title = newTodo.title;
+        item.description = newTodo.description;
         item.date = newTodo.date;
       }
       return item;

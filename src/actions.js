@@ -15,7 +15,7 @@ export function showAddDlg(e, item){
     return {type: SHOW_ADD_DIALOG, payload: { item, isEdit: true }};
   } else {
     return {type: SHOW_ADD_DIALOG, payload: { item: {
-        header: '', content: '', date: new Date()
+        title: '', description: '', date: new Date()
       }, isEdit: false
     }};
   }
@@ -40,12 +40,12 @@ export function addDlgHandleOk(currentTodo){
       currentTodo.id = Date.now();
     }
 
-    if(currentTodo.header === ''){
-      errorMsg.header = 'This field is required';
+    if(currentTodo.title === ''){
+      errorMsg.title = 'This field is required';
       isError = true;
     }
-    if(currentTodo.content  === ''){
-      errorMsg.content = 'This field is required';
+    if(currentTodo.description  === ''){
+      errorMsg.description = 'This field is required';
       isError = true;
     }
     if(isError){

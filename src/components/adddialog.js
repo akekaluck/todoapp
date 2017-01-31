@@ -8,7 +8,7 @@ class AddDialog extends React.Component {
   constructor(){
     super();
     this.state = {
-      header: '',
+      title: '',
       content: '',
       date: new Date()
     }
@@ -17,14 +17,14 @@ class AddDialog extends React.Component {
   titleChange(e, newValue){
     this.setState({
       ...this.state,
-      header: newValue
+      title: newValue
     })
   }
 
   descriptionChange(e, newValue){
     this.setState({
       ...this.state,
-      content: newValue
+      description: newValue
     })
   }
 
@@ -57,17 +57,17 @@ class AddDialog extends React.Component {
         modal={true}
         open={this.props.addDlgOpen}
       >
-        <TextField hintText="Header" fullWidth={true}
-          defaultValue={this.props.currentTodo.header}
-          floatingLabelText="Header"
-          errorText={this.props.errorMsg.header}
+        <TextField hintText="Title" fullWidth={true}
+          defaultValue={this.props.currentTodo.title}
+          floatingLabelText="Title"
+          errorText={this.props.errorMsg.title}
           onChange={this.titleChange.bind(this)}
           />
         <br />
         <TextField hintText="Content" fullWidth={true}
-          defaultValue={this.props.currentTodo.content}
+          defaultValue={this.props.currentTodo.description}
           floatingLabelText="Content"
-          errorText={this.props.errorMsg.content}
+          errorText={this.props.errorMsg.description}
           onChange={this.descriptionChange.bind(this)}
           />
         <br />
