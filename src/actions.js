@@ -10,6 +10,7 @@ export const CLOSE_REMOVE_DIALOG = 'CLOSE_REMOVE_DIALOG';
 export const REMOVE_TODO = 'REMOVE_TODO';
 
 export const FILTER_CHANGED = 'FILTER_CHANGED';
+export const CALCULATE_SUMMARY = 'CALCULATE_SUMMARY';
 
 export function showAddDlg(e, item){
   if(item){
@@ -47,6 +48,7 @@ export function removeDlgHandleOk(currentTodo){
   return (dispatch) =>{
     dispatch({ type: REMOVE_TODO, payload: { currentTodo }});
     dispatch({ type: CLOSE_REMOVE_DIALOG });
+    dispatch(calculateSummary());
   }
 }
 
@@ -80,6 +82,7 @@ export function addDlgHandleOk(){
         isEdit
       }});
       dispatch({type: CLOSE_ADD_DIALOG});
+      dispatch(calculateSummary());
     }
   }
 }
@@ -91,5 +94,20 @@ export function filterChanged(e, child){
         filterBy: child.props.primaryText
       }
     })
+  }
+}
+
+export function calculateSummary(){
+  return (dispatch, getState) =>{
+    let totalDone = getState().todos.filter((todo)=>{
+      return todo.checked?true:false;
+    }).length;
+    let totalInProgress = getState().todos.filter((todo)=>{
+      return todo.checked?false:true;
+    }).length;
+    dispatch({ type: CALCULATE_SUMMARY, payload: {
+      totalDone,
+      totalInProgress
+    }});
   }
 }

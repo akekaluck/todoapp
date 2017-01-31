@@ -11,6 +11,15 @@ import IconButton from 'material-ui/IconButton';
 import {red500, green500} from 'material-ui/styles/colors';
 
 class RightButtons extends React.Component {
+  dateFormat(date){
+    var mm = date.getMonth() + 1;
+    var dd = date.getDate();
+    return [date.getFullYear(),
+          (mm>9 ? '' : '0') + mm,
+          (dd>9 ? '' : '0') + dd
+        ].join('-');
+  }
+
   render(){
     const style = {
       position: 'absolute',
@@ -28,7 +37,7 @@ class RightButtons extends React.Component {
     return (
       <div style={style}>
         <div style={dateStyle}>
-          {this.props.item.date?this.props.item.date.toISOString().slice(0,10):''}
+          {this.props.item.date?this.dateFormat(this.props.item.date):''}
         </div>
         <IconButton disabled={this.props.item.checked}
           onClick={(e)=>{this.props.showAddDlg(e, this.props.item)}}
@@ -64,6 +73,7 @@ class Todo extends React.Component {
   checkboxChecked(e){
     this.props.item.checked = e.target.checked
     this.checkTodoHasDone(this.props.item);
+    this.props.calculateSummary();
   }
 
   checkTodoHasDone(item){

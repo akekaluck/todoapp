@@ -7,10 +7,12 @@ const InitialState = {
   removeDlgOpen: false,
   todos: [
     {id: 1, title: 'test', description: 'description', date:new Date(), checked: false},
-    {id: 2, title: 'test', description: 'description', date:new Date(), checked: true}
+    // {id: 2, title: 'test', description: 'description', date:new Date(), checked: true}
   ],
   currentTodo: {},
-  errorMsg: {}
+  errorMsg: {},
+  totalDone: 0,
+  totalInProgress: 0
 }
 
 const AddTodo = (state, action) => {
@@ -79,6 +81,12 @@ const todoApp = (state = InitialState, action)=>{
 
     case Actions.FILTER_CHANGED:
       return {...state, filterBy: action.payload.filterBy}
+
+    case Actions.CALCULATE_SUMMARY:
+      return {...state,
+        totalDone: action.payload.totalDone,
+        totalInProgress: action.payload.totalInProgress
+      }
 
     default:
       return state

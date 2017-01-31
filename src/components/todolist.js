@@ -19,6 +19,7 @@ class TodoList extends React.Component {
       return <Todo key={i++} item={item}
         showAddDlg={this.props.Actions.showAddDlg}
         showRemoveDlg={this.props.Actions.showRemoveDlg}
+        calculateSummary={this.props.Actions.calculateSummary}
       />
     })
 
