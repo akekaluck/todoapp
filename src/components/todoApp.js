@@ -12,11 +12,12 @@ import MenuItem from 'material-ui/MenuItem';
 import AddDialog from './adddialog';
 import RemoveDialog from './removedialog';
 
+
 const Filter = (props) => (
   <IconMenu
     {...props}
     iconButtonElement={
-      <IconButton><MoreVertIcon /></IconButton>
+      <IconButton ><MoreVertIcon color={'white'}/></IconButton>
     }
   >
     <MenuItem primaryText="All" />
@@ -37,7 +38,7 @@ class TodoApp extends React.Component {
       <div>
         <AppBar title="Welcome to Todo app."
           showMenuIconButton={false}
-          iconElementRight={<Filter />}
+          iconElementRight={<Filter onItemTouchTap={this.props.Actions.filterChanged}/>}
         />
         <FloatingActionButton secondary={true} style={addButtonStyle}
           onClick={this.props.Actions.showAddDlg}>

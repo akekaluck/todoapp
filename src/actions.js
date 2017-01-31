@@ -9,6 +9,8 @@ export const CLOSE_REMOVE_DIALOG = 'CLOSE_REMOVE_DIALOG';
 
 export const REMOVE_TODO = 'REMOVE_TODO';
 
+export const FILTER_CHANGED = 'FILTER_CHANGED';
+
 export function showAddDlg(e, item){
   if(item){
     let newItem = {...item};
@@ -79,5 +81,15 @@ export function addDlgHandleOk(){
       }});
       dispatch({type: CLOSE_ADD_DIALOG});
     }
+  }
+}
+
+export function filterChanged(e, child){
+  return (dispatch)=>{
+    dispatch({type: FILTER_CHANGED,
+      payload: {
+        filterBy: child.props.primaryText
+      }
+    })
   }
 }

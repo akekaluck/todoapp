@@ -1,7 +1,7 @@
 import * as Actions from './actions'
 
 const InitialState = {
-  filter: {},
+  filterBy: 'All',
   addDlgOpen: false,
   isEdit: false,
   removeDlgOpen: false,
@@ -76,6 +76,9 @@ const todoApp = (state = InitialState, action)=>{
 
     case Actions.ADD_TODO_VALIDATE_ERROR:
       return {...state, errorMsg: action.payload.errorMsg};
+
+    case Actions.FILTER_CHANGED:
+      return {...state, filterBy: action.payload.filterBy}
 
     default:
       return state
