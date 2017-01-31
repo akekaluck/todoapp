@@ -12,13 +12,16 @@ class Filter extends React.Component {
         <Badge
           badgeContent={this.props.totalDone}
           badgeStyle={{backgroundColor:'#4CAF50', color:'white'}}
-          style={{top:'12px', right: '20px'}}
+          style={{top:'12px', right: '90px'}}
         />
         <Badge
             badgeContent={this.props.totalInProgress}
             secondary={true}
-            style={{top:'12px', right: '20px'}}
+            style={{top:'12px', right: '90px'}}
           />
+        <div style={{position:'absolute', top:'24px', right: '50px', color:'white'}}>
+        {this.props.filterBy}
+        </div>
         <IconMenu
           {...this.props}
           iconButtonElement={

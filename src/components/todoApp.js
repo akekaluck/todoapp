@@ -18,7 +18,7 @@ class TodoApp extends React.Component {
       bottom: '40px',
       right: '40px'
     }
-    const {totalDone, totalInProgress} = this.props;
+    const {filterBy, totalDone, totalInProgress} = this.props;
 
     return (
       <div>
@@ -27,6 +27,7 @@ class TodoApp extends React.Component {
           iconElementRight={
             <Filter
               onItemTouchTap={this.props.Actions.filterChanged}
+              filterBy={filterBy}
               totalDone={totalDone}
               totalInProgress={totalInProgress}
             />
