@@ -10,6 +10,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/MenuItem';
 
 import AddDialog from './adddialog';
+import RemoveDialog from './removedialog';
 
 const Filter = (props) => (
   <IconMenu
@@ -44,6 +45,7 @@ class TodoApp extends React.Component {
         </FloatingActionButton>
         <TodoList { ...this.props }/>
         <AddDialog { ...this.props} />
+        <RemoveDialog {...this.props} />
       </div>
     )
   }

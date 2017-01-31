@@ -35,7 +35,7 @@ class RightButtons extends React.Component {
         >
           <Edit color={green500} />
         </IconButton>
-        <IconButton disabled={this.props.item.checked}
+        <IconButton
           onClick={(e)=>{this.props.showRemoveDlg(e, this.props.item)}}
         >
           <Delete color={red500} />
@@ -53,9 +53,21 @@ class Todo extends React.Component {
     }
   }
 
+  componentDidMount(){
+    this.checkTodoHasDone(this.props.item);
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.checkTodoHasDone(nextProps.item);
+  }
+
   checkboxChecked(e){
     this.props.item.checked = e.target.checked
-    if(this.props.item.checked){
+    this.checkTodoHasDone(this.props.item);
+  }
+
+  checkTodoHasDone(item){
+    if(item.checked){
       this.setState({
         ...this.state,
         todoStyle: {

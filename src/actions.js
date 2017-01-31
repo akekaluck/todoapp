@@ -7,8 +7,7 @@ export const CLOSE_ADD_DIALOG = 'CLOSE_ADD_DIALOG';
 export const SHOW_REMOVE_DIALOG = 'SHOW_REMOVE_DIALOG';
 export const CLOSE_REMOVE_DIALOG = 'CLOSE_REMOVE_DIALOG';
 
-export const TODO_CHECKED = 'TODO_CHECKED';
-export const TODO_UNCHECKED = 'TODO_UNCHECKED';
+export const REMOVE_TODO = 'REMOVE_TODO';
 
 export function showAddDlg(e, item){
   if(item){
@@ -21,17 +20,27 @@ export function showAddDlg(e, item){
   }
 }
 
-export function showRemoveDlg(item){
-  return {type: SHOW_REMOVE_DIALOG, payload: { item }};
-}
-
 export function addDlgHandleClose(){
   return { type: CLOSE_ADD_DIALOG}
 }
 
+export function showRemoveDlg(e, item){
+  return {type: SHOW_REMOVE_DIALOG, payload: { item }};
+}
+
+export function removeDlgHandleClose(){
+  return { type: CLOSE_REMOVE_DIALOG}
+}
+
+export function removeDlgHandleOk(currentTodo){
+  return (dispatch) =>{
+    dispatch({ type: REMOVE_TODO, payload: { currentTodo }});
+    dispatch({ type: CLOSE_REMOVE_DIALOG });
+  }
+}
+
 export function addDlgHandleOk(currentTodo){
   return (dispatch, getState)=>{
-    // let currentTodo = getState().currentTodo;
     let isEdit = getState().isEdit;
     let errorMsg = {};
     let isError = false;
