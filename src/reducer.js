@@ -88,6 +88,11 @@ const todoApp = (state = InitialState, action)=>{
         totalInProgress: action.payload.totalInProgress
       }
 
+    case 'REDUX_STORAGE_LOAD':
+      return {...state,
+        ...action.payload
+      }
+
     default:
       return state
   }
