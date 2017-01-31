@@ -18,7 +18,7 @@ export function showAddDlg(e, item){
       type: SHOW_ADD_DIALOG,
       payload: {
         item: {
-          title: '', 
+          title: '',
           description: '',
           date: new Date(),
           checked: false
@@ -56,7 +56,7 @@ export function addDlgHandleOk(){
     let errorMsg = {};
     let isError = false;
     if(!isEdit){
-      //If new create new id
+      //If new create, generate new id
       currentTodo.id = Date.now();
     }
 

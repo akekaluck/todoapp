@@ -5,36 +5,6 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 
 class AddDialog extends React.Component {
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     title: '',
-  //     description: '',
-  //     date: new Date(),
-  //     checked: false
-  //   }
-  // }
-  //
-  // titleChange(e, newValue){
-  //   this.setState({
-  //     ...this.state,
-  //     title: newValue
-  //   })
-  // }
-  //
-  // descriptionChange(e, newValue){
-  //   this.setState({
-  //     ...this.state,
-  //     description: newValue
-  //   })
-  // }
-  //
-  // dateChange(e, newValue){
-  //   this.setState({
-  //     ...this.state,
-  //     date: newValue
-  //   })
-  // }
 
   render(){
     const actions = [
