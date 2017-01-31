@@ -20,10 +20,10 @@ class RightButtons extends React.Component {
     return (
       <div style={style}>
         <IconButton>
-          <Edit color={green500}/>
+          <Edit color={green500} onClick={(e)=>{this.props.showAddDlg(e, this.props.item)}}/>
         </IconButton>
         <IconButton>
-          <Delete color={red500}/>
+          <Delete color={red500} onClick={(e)=>{this.props.showRemoveDlg(e, this.props.item)}}/>
         </IconButton>
       </div>
     )
@@ -42,7 +42,7 @@ class Todo extends React.Component {
             onCheck={(e)=>{this.props.item.checked = e.target.checked}}/>
         }
         rightIconButton={
-          <RightButtons />
+          <RightButtons {...this.props}/>
         }
       />
       </Paper>
