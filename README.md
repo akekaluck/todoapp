@@ -1,6 +1,7 @@
 Install dependencies
 
 ### `npm install`
+** Maybe it should require root permission. You should use `sudo npm install` instead
 
 In the project directory, you can run:
 
