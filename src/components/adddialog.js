@@ -5,35 +5,36 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 
 class AddDialog extends React.Component {
-  constructor(){
-    super();
-    this.state = {
-      title: '',
-      content: '',
-      date: new Date()
-    }
-  }
-
-  titleChange(e, newValue){
-    this.setState({
-      ...this.state,
-      title: newValue
-    })
-  }
-
-  descriptionChange(e, newValue){
-    this.setState({
-      ...this.state,
-      description: newValue
-    })
-  }
-
-  dateChange(e, newValue){
-    this.setState({
-      ...this.state,
-      date: newValue
-    })
-  }
+  // constructor(){
+  //   super();
+  //   this.state = {
+  //     title: '',
+  //     description: '',
+  //     date: new Date(),
+  //     checked: false
+  //   }
+  // }
+  //
+  // titleChange(e, newValue){
+  //   this.setState({
+  //     ...this.state,
+  //     title: newValue
+  //   })
+  // }
+  //
+  // descriptionChange(e, newValue){
+  //   this.setState({
+  //     ...this.state,
+  //     description: newValue
+  //   })
+  // }
+  //
+  // dateChange(e, newValue){
+  //   this.setState({
+  //     ...this.state,
+  //     date: newValue
+  //   })
+  // }
 
   render(){
     const actions = [
@@ -45,9 +46,7 @@ class AddDialog extends React.Component {
       <FlatButton
         label="Ok"
         primary={true}
-        onTouchTap={()=>{
-          this.props.Actions.addDlgHandleOk(this.state);
-        }}
+        onTouchTap={this.props.Actions.addDlgHandleOk}
       />,
     ];
     return (
@@ -61,19 +60,25 @@ class AddDialog extends React.Component {
           defaultValue={this.props.currentTodo.title}
           floatingLabelText="Title"
           errorText={this.props.errorMsg.title}
-          onChange={this.titleChange.bind(this)}
+          onChange={(e, newValue)=>{
+            this.props.currentTodo.title = newValue;
+          }}
           />
         <br />
         <TextField hintText="Content" fullWidth={true}
           defaultValue={this.props.currentTodo.description}
           floatingLabelText="Content"
           errorText={this.props.errorMsg.description}
-          onChange={this.descriptionChange.bind(this)}
+          onChange={(e, newValue)=>{
+            this.props.currentTodo.description = newValue;
+          }}
           />
         <br />
         <DatePicker hintText="Date"
           defaultDate={this.props.currentTodo.date}
-          onChange={this.dateChange.bind(this)}
+          onChange={(e, newValue)=>{
+            this.props.currentTodo.date = newValue;
+          }}
           />
         <br />
       </Dialog>

@@ -17,19 +17,19 @@ const AddTodo = (state, action) => {
   let result = {...state};
   if(action.payload.isEdit){
     //Edit todo
-    console.log('Edit: ', action.payload.newTodo);
-    let newTodo = action.payload.newTodo;
+    console.log('Edit: ', action.payload.currentTodo);
+    let currentTodo = action.payload.currentTodo;
     result.todos = result.todos.map((item)=>{
-      if(item.id === newTodo.id){
-        item.title = newTodo.title;
-        item.description = newTodo.description;
-        item.date = newTodo.date;
+      if(item.id === currentTodo.id){
+        item.title = currentTodo.title;
+        item.description = currentTodo.description;
+        item.date = currentTodo.date;
       }
       return item;
     })
   } else {
     //Add todo
-    result.todos.push(action.payload.newTodo);
+    result.todos.push(action.payload.currentTodo);
   }
   return result;
 }

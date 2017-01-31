@@ -11,12 +11,21 @@ export const REMOVE_TODO = 'REMOVE_TODO';
 
 export function showAddDlg(e, item){
   if(item){
-    return {type: SHOW_ADD_DIALOG, payload: { item, isEdit: true }};
+    let newItem = {...item};
+    return {type: SHOW_ADD_DIALOG, payload: { item: newItem, isEdit: true }};
   } else {
-    return {type: SHOW_ADD_DIALOG, payload: { item: {
-        title: '', description: '', date: new Date()
-      }, isEdit: false
-    }};
+    return {
+      type: SHOW_ADD_DIALOG,
+      payload: {
+        item: {
+          title: '', 
+          description: '',
+          date: new Date(),
+          checked: false
+        },
+        isEdit: false
+      }
+    };
   }
 }
 
@@ -39,13 +48,15 @@ export function removeDlgHandleOk(currentTodo){
   }
 }
 
-export function addDlgHandleOk(currentTodo){
+export function addDlgHandleOk(){
   return (dispatch, getState)=>{
+    let currentTodo = getState().currentTodo;
     let isEdit = getState().isEdit;
+
     let errorMsg = {};
     let isError = false;
-
     if(!isEdit){
+      //If new create new id
       currentTodo.id = Date.now();
     }
 
@@ -63,7 +74,7 @@ export function addDlgHandleOk(currentTodo){
       }});
     } else {
       dispatch({type: ADD_TODO, payload: {
-        newTodo: currentTodo,
+        currentTodo,
         isEdit
       }});
       dispatch({type: CLOSE_ADD_DIALOG});
